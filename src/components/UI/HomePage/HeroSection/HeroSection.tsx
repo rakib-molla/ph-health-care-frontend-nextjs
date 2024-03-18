@@ -25,9 +25,9 @@ function HeroSection() {
             <Typography variant="h3" component="h1" fontWeight={600}>Healthier Hearts</Typography>
             <Typography variant="h3" component="h1" fontWeight={600}>Comes From</Typography>
             <Typography color="primary.main" variant="h3" component="h1" fontWeight={600}>Preventive Care</Typography>
-            <Typography color="primary.main" variant="h6" component="p" fontWeight={400} sx={{
+            <Typography color="#808080" variant="h6" component="p" fontWeight={400} sx={{
                 width:"50%",
-                py: "15px",
+                py: "25px",
             }}>
                 development is being shaped by technological developments, artificial intelligence (AI), and the growth of no-code/low-code platforms. AI is not expected to replace frontend developers
             </Typography>
