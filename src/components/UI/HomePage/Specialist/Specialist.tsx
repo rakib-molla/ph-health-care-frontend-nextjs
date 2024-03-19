@@ -12,10 +12,10 @@ const Specialist = async() =>{
 
   return (
     <Container sx={{
-        margin: "40px 0px",
+        margin: "40px auto",
         textAlign: "start",
     }}>.
-        <Box>
+        <Box >
             <Typography variant="h4" fontWeight={600}>Explore Treatments Across Specialties</Typography>
             <Typography component="p" fontWeight={300} fontSize={18}>Experienced Doctors Across All Specialties</Typography>
             <Stack direction="row" gap={4} mt={5}>
