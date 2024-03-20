@@ -97,6 +97,65 @@ function Solution() {
                 </Grid>
             </Grid>
         </Grid>
+
+        <Box my={10} sx={{
+            
+        }}>
+            <Grid container spacing={5} sx={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                background: "linear-gradient(to right, #004BF7 , #1BC1E5)",
+                borderRadius:"10px",
+                paddingBottom:"40px",
+                
+            }}> 
+                <Grid item md={3} sx={{
+                    color:"#fff",
+                }}>
+                    <Typography variant="h5" textAlign="center" fontWeight={600}>
+                        180+
+                    </Typography>
+                    <Typography textAlign="center"  variant="body2">
+                        Expert Doctors
+                    </Typography>
+
+                </Grid>
+                <Grid item md={3} sx={{
+                    color:"#fff",
+                }}>
+                    <Typography variant="h5" textAlign="center" fontWeight={600}>
+                        26+
+                    </Typography>
+                    <Typography textAlign="center"  variant="body2">
+                        Expert Services
+                    </Typography>
+
+                </Grid>
+                <Grid item md={3} sx={{
+                    color:"#fff",
+                }}>
+                    <Typography variant="h5" textAlign="center" fontWeight={600}>
+                       10k+
+                    </Typography>
+                    <Typography textAlign="center"  variant="body2">
+                        Happy Patients
+                    </Typography>
+
+                </Grid>
+                <Grid item md={3} sx={{
+                    color:"#fff",
+                }}>
+                    <Typography variant="h5" textAlign="center" fontWeight={600}>
+                        150+
+                    </Typography>
+                    <Typography textAlign="center"  variant="body2">
+                        Best Award Winings
+                    </Typography>
+
+                </Grid>
+            </Grid>
+        </Box>
     </Container>
   )
 }
