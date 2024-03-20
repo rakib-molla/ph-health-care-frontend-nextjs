@@ -98,9 +98,7 @@ function Solution() {
             </Grid>
         </Grid>
 
-        <Box my={10} sx={{
-            
-        }}>
+        <Box my={15}>
             <Grid container spacing={5} sx={{
                 display:"flex",
                 alignItems:"center",
