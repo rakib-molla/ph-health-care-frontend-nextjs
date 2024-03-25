@@ -6,6 +6,7 @@ import assets from '@/assets'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { loginPatient } from "@/services/actions/loginPatient";
 import { toast } from 'sonner';
+import { storeUserInfo } from "@/services/actions/auth.services";
 export type TFormValues = {
   email: string;
   password: string;
@@ -25,11 +26,12 @@ function LoginPage() {
     console.log(data);
     try{
       const res = await loginPatient(data);
-      if(res?.success){
+      if(res?.data?.accessToken){
         toast.success(res?.message, {duration: 2000});
         // router.push('')
         console.log(res)
-        reset()
+        storeUserInfo({accessToken: res?.data?.accessToken})
+        reset();
       }else{
         toast.error(res?.message, {duration: 2000})
       }
