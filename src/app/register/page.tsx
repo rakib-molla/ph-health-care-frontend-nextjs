@@ -40,10 +40,10 @@ function RegisterPage() {
         toast.success(res.message,{duration: 2000});
         router.push('/login');
       }else{
-        toast.error(res.message);
+        toast.error(res.message ,{duration: 2000});
       }
     }catch(err: any){
-      console.log(err.message,{duration: 2000})
+      // console.log(err.message)
     }
     reset()
   }
