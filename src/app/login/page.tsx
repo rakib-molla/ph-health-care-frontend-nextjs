@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { loginPatient } from "@/services/actions/loginPatient";
 import { toast } from 'sonner';
 import { storeUserInfo } from "@/services/actions/auth.services";
+import {useRouter} from 'next/navigation'
 export type TFormValues = {
   email: string;
   password: string;
@@ -14,7 +15,7 @@ export type TFormValues = {
 }
 
 function LoginPage() {
-
+const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -28,10 +29,8 @@ function LoginPage() {
       const res = await loginPatient(data);
       if(res?.data?.accessToken){
         toast.success(res?.message, {duration: 2000});
-        // router.push('')
-        console.log(res)
+        router.push('/')
         storeUserInfo({accessToken: res?.data?.accessToken})
-        reset();
       }else{
         toast.error(res?.message, {duration: 2000})
       }

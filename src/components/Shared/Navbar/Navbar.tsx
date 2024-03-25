@@ -2,11 +2,13 @@
 import { getUserInfo, isLoggedIn, removeUser } from "@/services/actions/auth.services";
 import { Box, Container, Stack, Typography,Button } from "@mui/material"
 import Link from 'next/link'
-
+import {useRouter} from 'next/navigation'
 function Navbar() {
+  const router = useRouter();
   const userInfo = getUserInfo();
   const handleLogOut=()=>{
     removeUser();
+    router.refresh();
   }
   return (
     <Container>

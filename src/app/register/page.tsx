@@ -37,10 +37,10 @@ function RegisterPage() {
       const res = await registerPatient(data)
       
       if(res?.data?.id){
-        toast.success(res.message,{duration: 2000});
+        toast.success(res?.message,{duration: 2000});
         router.push('/login');
       }else{
-        toast.error(res.message ,{duration: 2000});
+        toast.error(res?.message ,{duration: 2000});
       }
     }catch(err: any){
       // console.log(err.message)
