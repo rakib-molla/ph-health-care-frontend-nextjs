@@ -1,4 +1,4 @@
-import { Box, Button, Container, Typography,Stack,Grid, Card, CardMedia, CardContent, CardActions } from "@mui/material"
+import { Box,  Container, Typography,Grid, Card,  CardContent,  } from "@mui/material"
 import doctorSolutionImg from "@/assets/how-it-works-img.png"
 import Image from "next/image";
 import assets from "@/assets"
