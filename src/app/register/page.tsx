@@ -12,6 +12,30 @@ import { loginPatient } from "@/services/actions/loginPatient";
 import { storeUserInfo } from "@/services/actions/auth.services";
 import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod"
+
+export const patientValidationSchema = z.object({
+  name: z.string().min(1, 'Please Enter Your Name'),
+  email: z.string().email("Please Provide Valid Email Address"),
+  contactNumber: z.string().regex(/^\d{11}$/, "Please Provide a Valid Phone Nubmer"),
+  address: z.string().min(3, "Please Enter Your Address"),
+})
+
+export const validationSchema = z.object({
+  password: z.string().min(6,"Password Must be 6 Character"),
+  patient: patientValidationSchema,
+})
+
+export const defaultValues = {
+  password: '',
+  patient:{
+    name: '',
+    email: '',
+    contactNumebr:'',
+    address: ''
+  }
+}
 
 function RegisterPage() {
   const router = useRouter();
@@ -69,7 +93,10 @@ function RegisterPage() {
               <Typography component="h6" fontWeight={600}>Patient Register</Typography>
             </Box>
           </Stack>
-          <PHForm onSubmit={handleRegister}>
+          <PHForm onSubmit={handleRegister}
+          resolver={zodResolver(validationSchema)}
+          defaultValues={defaultValues}
+          >
           <Box>
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}> 
@@ -78,7 +105,6 @@ function RegisterPage() {
                   label="Name"
                   type="text"
                   size="small"
-                  required={true}
                   fullWidth={true}
                   />
                 </Grid>
@@ -88,7 +114,6 @@ function RegisterPage() {
                   label="Email"
                   type="email"
                   size="small"
-                  required={true}
                   fullWidth={true}
                   />
                 </Grid>
@@ -98,7 +123,6 @@ function RegisterPage() {
                   label="Password"
                   type="password"
                   size="small"
-                  required={true}
                   fullWidth={true}
                   />
                 </Grid>
@@ -108,7 +132,6 @@ function RegisterPage() {
                   label="Contact Number"
                   type="tel"
                   size="small"
-                  required={true}
                   fullWidth={true}
                   />
                 </Grid>
@@ -119,8 +142,6 @@ function RegisterPage() {
                   type="text"
                   size="small"
                   fullWidth={true}
-                  required={true}
-
                   />
                 </Grid>
               </Grid>
