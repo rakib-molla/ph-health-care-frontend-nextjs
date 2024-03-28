@@ -10,6 +10,15 @@ import { storeUserInfo } from "@/services/actions/auth.services";
 import {useRouter} from 'next/navigation'
 import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
+import z from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod"
+
+
+export const validationSchema = z.object({
+  email: z.string().email("Please Enter A Valid Email Address!!!"),
+  password: z.string().min(6, "Must Be least 6 Characters"),
+})
+
 export type TFormValues = {
   email: string;
   password: string;
@@ -63,7 +72,12 @@ const router = useRouter();
               <Typography component="h6" fontWeight={600}>Login PH HealthCare</Typography>
             </Box>
           </Stack>
-          <PHForm onSubmit={handleLogin}>
+          <PHForm onSubmit={handleLogin} 
+          resolver={zodResolver(validationSchema)} 
+          defaultValues={{
+            email: '',
+            password: '',
+          }}>
           <Box>
               <Grid container spacing={2} my={1}>
                 
@@ -74,6 +88,7 @@ const router = useRouter();
                   type="email"
                   size="small"
                   fullWidth={true}
+                  required={true}
                   />
                 </Grid>
                 <Grid item md={6}> 
@@ -83,6 +98,8 @@ const router = useRouter();
                   type="password"
                   size="small"
                   fullWidth={true}
+                  required={true}
+
                   />
                 </Grid>
               </Grid>
