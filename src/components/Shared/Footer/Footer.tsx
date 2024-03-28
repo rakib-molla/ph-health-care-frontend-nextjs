@@ -24,7 +24,8 @@ function Footer() {
                 <Image width={30} height={30} src={twitterIcon} alt="facebook"/>
                 <Image width={30} height={30} src={linkedinIcon} alt="facebook"/>
             </Stack>
-            <div className="border-b-[1px] border-dashed"></div>
+            
+            <Box  sx={{border:'1px dashed lightgray'}}></Box>
             <Stack direction="row" gap={2} justifyContent="space-between" alignItems="center" py={2}>
                 <Typography color="#fff" component="p" >&copy; 2024 PH HealthCare. All Rights Reserved.</Typography>
                 <Typography variant="h4" color="#fff" component={Link} href="/" fontWeight={600}>
