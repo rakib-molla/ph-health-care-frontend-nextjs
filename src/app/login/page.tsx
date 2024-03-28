@@ -3,11 +3,13 @@ import { Box, Button, Container, Typography,Stack,Grid, TextField } from "@mui/m
 import Image from 'next/image';
 import Link from 'next/link';
 import assets from '@/assets'
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form"
 import { loginPatient } from "@/services/actions/loginPatient";
 import { toast } from 'sonner';
 import { storeUserInfo } from "@/services/actions/auth.services";
 import {useRouter} from 'next/navigation'
+import PHForm from "@/components/Forms/PHForm";
+import PHInput from "@/components/Forms/PHInput";
 export type TFormValues = {
   email: string;
   password: string;
@@ -16,15 +18,9 @@ export type TFormValues = {
 
 function LoginPage() {
 const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm<TFormValues>()
-  const onSubmit: SubmitHandler<TFormValues> = async(data) => {
-    console.log(data);
+  
+  const handleLogin = async(data: FieldValues) => {
+    // console.log(data);
     try{
       const res = await loginPatient(data);
       if(res?.data?.accessToken){
@@ -67,29 +63,26 @@ const router = useRouter();
               <Typography component="h6" fontWeight={600}>Login PH HealthCare</Typography>
             </Box>
           </Stack>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <PHForm onSubmit={handleLogin}>
           <Box>
               <Grid container spacing={2} my={1}>
                 
                 <Grid item md={6}> 
-                  <TextField 
+                  <PHInput 
+                  name="email"
                   label="Email"
-                  variant="outlined"
                   type="email"
                   size="small"
                   fullWidth={true}
-                  {...register('email')}
                   />
                 </Grid>
                 <Grid item md={6}> 
-                  <TextField 
+                  <PHInput 
+                  name="password"
                   label="Password"
                   type="password"
-                  variant="outlined"
                   size="small"
                   fullWidth={true}
-                  {...register('password')}
-
                   />
                 </Grid>
               </Grid>
@@ -99,7 +92,7 @@ const router = useRouter();
               }}>Login </Button>
               <Typography component="p" fontWeight={300} >Don't have an account? <Link href="/register" color="blue"> Create an account</Link> </Typography>
           </Box>
-          </form>
+          </PHForm>
         </Box>
       </Stack>
     </Container>
