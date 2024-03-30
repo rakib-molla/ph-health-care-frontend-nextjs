@@ -34,7 +34,7 @@ const router = useRouter();
       const res = await loginPatient(data);
       if(res?.data?.accessToken){
         toast.success(res?.message, {duration: 2000});
-        router.push('/')
+        router.push('/dashboard')
         storeUserInfo({accessToken: res?.data?.accessToken})
       }else{
         toast.error(res?.message, {duration: 2000})

@@ -1,50 +1,28 @@
 
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
+
 import Box from '@mui/material/Box';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import Divider from '@mui/material/Divider';
-import Toolbar from '@mui/material/Toolbar';
+
 import { Stack, Typography } from '@mui/material';
 import assets from '@/assets';
 import Image from 'next/image';
 import Link from "next/link"
+import { drawerItems } from '@/utils/drawerItems';
+import { UserRole } from '@/types';
+import SidebarItems from './SidebarItems';
+import { getUserInfo } from '@/services/actions/auth.services';
+import { useState, useEffect } from 'react';
+
+
 function Sidebar() {
-  const drawer = (
-    <div>
-      
-      {/* <Divider /> */}
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const [userRole, setUserRole] = useState('');
+
+  useEffect(()=>{
+    const {role} = getUserInfo() as any;
+    setUserRole(role);
+  },[])
+  
+
   return (
     <Box>
       <Stack direction="row"
@@ -60,7 +38,11 @@ function Sidebar() {
           PH Health Care
         </Typography>
       </Stack>
-      {drawer}
+        <List>
+        {drawerItems(userRole as UserRole).map((item, index) => (
+          <SidebarItems key={index} item={item}/>
+        ))}
+      </List>
     </Box>
   )
 }

@@ -46,6 +46,8 @@ export default function DashboardDrawer({children}:{children: React.ReactNode}) 
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          backgroundColor: "#F4F7fE",
+          borderBottom: "1px solid lightgray"
         }}
       >
         <Toolbar>
@@ -54,13 +56,18 @@ export default function DashboardDrawer({children}:{children: React.ReactNode}) 
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: 'none' }, color: "primary.main" }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          <Box>
+            <Typography variant="body2" noWrap component="div" color="gray">
+             Hi, Rakib Molla
           </Typography>
+            <Typography variant="body2" noWrap component="div" color="primary.main" >
+             Welcome To PH helth Care
+          </Typography>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box
