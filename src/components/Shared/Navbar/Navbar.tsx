@@ -13,6 +13,7 @@ function Navbar() {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
+        
         > 
             <Typography variant="h4" component={Link} href="/" fontWeight={600}>
             P<Box component="span" color="primary.main">H</Box> Health Care
